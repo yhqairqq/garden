@@ -6,7 +6,14 @@
 
     <groupId>com.unionpay.garden</groupId>
     <artifactId>garden</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>nuclear</module>
+        <module>swallow</module>
+        <module>coordinatorServer</module>
+        <module>nuclear</module>
+    </modules>
 
 
     <properties>
