@@ -30,7 +30,7 @@ object KafkaWordCount {
 
     // Create context with 2 second batch interval
     val sparkConf = new SparkConf().setAppName("DirectKafkaWordCount").setMaster("local[2]")
-    val ssc = new StreamingContext(sparkConf, Seconds(2))
+    val ssc = new StreamingContext(sparkConf, Seconds(1))
 
     val kafkaParams = Map[String, Object](
       "bootstrap.servers" -> "localhost:9092",
@@ -48,7 +48,7 @@ object KafkaWordCount {
       Subscribe[String, String](topics, kafkaParams)
     )
 
-    stream.map(record => (record.key, record.value)).print()
+    stream.map(record => record.value).saveAsTextFiles("sstest/kafka_waf_stream","txt")
     // Start the computation
     ssc.start()
     ssc.awaitTermination()
